@@ -1,0 +1,1 @@
+kubectl expose deploy gitea --port 3000 --type NodePort 

@@ -1,0 +1,41 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: gitea
+  labels: 
+    app: gitea
+  name: gitea
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: gitea
+  template:
+    metadata:
+      labels:
+        name: gitea
+    spec:
+      volumes:
+        - name: gitea-volume
+          persistentVolumeClaim:       
+      containers:
+        - name: gitea
+          image: gitea/gitea:latest
+          volumeMounts:
+            - mountPath: "/data"
+              name: gitea-volume
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gitea-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+              
+
+      
