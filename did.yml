@@ -17,7 +17,8 @@ spec:
     spec:
       volumes:
         - name: gitea-volume
-          persistentVolumeClaim:       
+          persistentVolumeClaim: 
+             claimName: gitea-pvc-1
       containers:
         - name: gitea
           image: gitea/gitea:latest
@@ -29,7 +30,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: gitea-pvc
+  name: gitea-pvc-1
 spec:
   accessModes:
     - ReadWriteOnce
